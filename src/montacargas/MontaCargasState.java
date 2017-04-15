@@ -2,6 +2,7 @@ package montacargas;
 
 import agent.Action;
 import agent.State;
+import gui.PuzzleTableModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,11 +65,48 @@ public class MontaCargasState extends State implements Cloneable {
         return new MontaCargasState(this.matrix);
     }
 
+    public int getNumRows(){
+        return matrix.length;
+    }
+
+    public int getNumColumns(){
+        return matrix.length;
+    }
+
     private transient ArrayList<MontaCargasListener> listeners = new ArrayList<>(3);
 
     private void firedPuzzleChanged(MontaCargasEvent event) {
         for (MontaCargasListener listener: listeners) {
             listener.puzzleChanged(null);
+        }
+    }
+
+    public int getTileValue(int row, int col) {
+
+        if(!isValidPosition(row, col)){
+            throw new IndexOutOfBoundsException("A posição não é válida!");
+        }
+        return matrix[row][col];
+    }
+
+    private boolean isValidPosition(int row, int col) {
+        //verifica se o numero da linha e da coluna está dentro dos limites da matriz
+        return !(row < 0 || col < 0) && !(row > matrix.length || col > matrix.length);
+
+        //return line >= 0 && line < matrix.length && column >= 0 && column < matrix[0].length;
+
+    }
+
+    public synchronized void addListener(MontaCargasListener l) {
+        if(!this.listeners.contains(l)){
+            listeners.add(l);
+        }
+
+    }
+
+    public synchronized void removeListener(MontaCargasListener l){
+        if(l!=null && this.listeners.contains(l)){
+            listeners.remove(l);
         }
     }
 

@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.util.NoSuchElementException;
 import javax.swing.*;
 
+import montacargas.MontaCargasAgent;
+import montacargas.MontaCargasState;
 import searchmethods.BeamSearch;
 import searchmethods.DepthLimitedSearch;
 import searchmethods.SearchMethod;
@@ -28,7 +30,7 @@ public class MainFrame extends JFrame {
                                     {0, 3, 0, 2, 0, 2},
                                     {0, 0, 0, 3, 0, 0},
                                     {0, 0, 0, 0, 0, 0}};
-    private EightPuzzleAgent agent = new EightPuzzleAgent(new EightPuzzleState(initialMatrix));
+    private MontaCargasAgent agent = new MontaCargasAgent(new MontaCargasState(initialMatrix));
     private JComboBox comboBoxSearchMethods;
     private JComboBox comboBoxHeuristics;
     private JLabel labelSearchParameter = new JLabel("limit/beam size:");
@@ -53,7 +55,7 @@ public class MainFrame extends JFrame {
     private void jbInit() throws Exception {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.setTitle("Eight Puzzle");
+        this.setTitle("Monta Cargas");
 
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.setLayout(new BorderLayout());

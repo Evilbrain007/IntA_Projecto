@@ -43,7 +43,7 @@ public class MontaCargasAgent extends Agent<MontaCargasState>{
         return this.environment;
     }
 
-    private MontaCargasState resetEnvironment() {
+    public MontaCargasState resetEnvironment() {
         this.environment = (MontaCargasState) initialEnvironment.clone();
         return this.environment;
     }
