@@ -20,7 +20,7 @@ public class PuzzleTileCellRenderer extends JLabel implements TableCellRenderer 
             boolean hasFocus, int row,
             int column) {
         
-        String text = (((Integer) value).intValue() == 0) ? "" : ((Integer) value).toString();
+        String text = ((Integer) value == 0) ? "" : value.toString();
         setText(text);
 
 //        ImageLoader loader = ImageLoader.getLoader();

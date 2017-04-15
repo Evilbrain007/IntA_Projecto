@@ -92,15 +92,15 @@ public class Agent<E extends State> {
 
     public String getSearchReport() {
         StringBuilder sb = new StringBuilder();
-        sb.append(searchMethod + "\n");
+        sb.append(searchMethod).append("\n");
         if (solution == null) {
             sb.append("No solution found\n");
         } else {
-            sb.append("Solution cost: " + Double.toString(solution.getCost()) + "\n");
+            sb.append("Solution cost: ").append(Double.toString(solution.getCost())).append("\n");
         }
-        sb.append("Num of expanded nodes: " + searchMethod.getStatistics().numExpandedNodes + "\n");
-        sb.append("Max frontier size: " + searchMethod.getStatistics().maxFrontierSize + "\n");
-        sb.append("Num of generated nodes: " + searchMethod.getStatistics().numGeneratedNodes+ "\n");
+        sb.append("Num of expanded nodes: ").append(searchMethod.getStatistics().numExpandedNodes).append("\n");
+        sb.append("Max frontier size: ").append(searchMethod.getStatistics().maxFrontierSize).append("\n");
+        sb.append("Num of generated nodes: ").append(searchMethod.getStatistics().numGeneratedNodes).append("\n");
 
         return sb.toString();
     }
