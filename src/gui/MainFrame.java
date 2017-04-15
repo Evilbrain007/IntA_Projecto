@@ -22,7 +22,12 @@ import searchmethods.SearchMethod;
 
 public class MainFrame extends JFrame {
 
-    private int[][] initialMatrix = {{8, 7, 6}, {5, 4, 3}, {2, 1, 0}};
+    private int[][] initialMatrix = {{0, 0, 0, 0, 0, 0},
+                                    {0, 2, 2, 2, 0, 0},
+                                    {1, 0, 0, 3, 0, 0},
+                                    {0, 3, 0, 2, 0, 2},
+                                    {0, 0, 0, 3, 0, 0},
+                                    {0, 0, 0, 0, 0, 0}};
     private EightPuzzleAgent agent = new EightPuzzleAgent(new EightPuzzleState(initialMatrix));
     private JComboBox comboBoxSearchMethods;
     private JComboBox comboBoxHeuristics;

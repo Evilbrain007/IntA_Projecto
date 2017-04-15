@@ -1,0 +1,5 @@
+Método firepuzzleChanged do MontaCargasState: recebe um parametro e nunca o usa
+
+metodo puzzleChanged do montaCargasListener: para que é usado
+
+metodo hashCode do MontaCargasState: porque que 97*7?
