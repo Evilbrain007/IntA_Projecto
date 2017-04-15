@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class EightPuzzleAgent extends Agent<EightPuzzleState>{
     
-    protected EightPuzzleState initialEnvironment;    
+    protected EightPuzzleState initialEnvironment;
     
     public EightPuzzleAgent(EightPuzzleState environemt) {
         super(environemt);

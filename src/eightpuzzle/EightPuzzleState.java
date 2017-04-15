@@ -134,7 +134,7 @@ public class EightPuzzleState extends State implements Cloneable {
         return new EightPuzzleState(matrix);
     }
     //Listeners
-    private transient ArrayList<EightPuzzleListener> listeners = new ArrayList<EightPuzzleListener>(3);
+    private transient ArrayList<EightPuzzleListener> listeners = new ArrayList<>(3);
 
     public synchronized void removeListener(EightPuzzleListener l) {
         if (listeners != null && listeners.contains(l)) {

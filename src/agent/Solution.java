@@ -6,7 +6,7 @@ import searchmethods.Node;
 
 public class Solution {
     private Problem problem;
-    private LinkedList<Action> actions = new LinkedList<Action>();
+    private LinkedList<Action> actions = new LinkedList<>();
 
     public Solution(Problem problem, Node goalNode){
         this.problem = problem;
