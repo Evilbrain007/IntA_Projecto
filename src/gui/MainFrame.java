@@ -95,20 +95,20 @@ public class MainFrame extends JFrame {
         mainPanel.add(puzzlePanel, java.awt.BorderLayout.SOUTH);
         contentPane.add(mainPanel);
 
-        configureTabel(tablePuzzle);
+        configureTable();
 
         pack();
     }
 
-    private void configureTabel(JTable table) {
+    private void configureTable() {
         puzzleTableModel = new PuzzleTableModel(agent.getEnvironment());
         tablePuzzle.setModel(puzzleTableModel);
-        table.setDefaultRenderer(Object.class, new PuzzleTileCellRenderer());
-        for (int i = 0; i < table.getColumnCount(); i++) {
-            table.getColumnModel().getColumn(i).setPreferredWidth(Properties.CELL_WIDTH);
+        tablePuzzle.setDefaultRenderer(Object.class, new PuzzleTileCellRenderer());
+        for (int i = 0; i < tablePuzzle.getColumnCount(); i++) {
+            tablePuzzle.getColumnModel().getColumn(i).setPreferredWidth(Properties.CELL_WIDTH);
         }
-        table.setRowHeight(Properties.CELL_HEIGHT);
-        table.setBorder(BorderFactory.createLineBorder(Color.black));
+        tablePuzzle.setRowHeight(Properties.CELL_HEIGHT);
+        tablePuzzle.setBorder(BorderFactory.createLineBorder(Color.black));
     }
 
     public void buttonInitialState_ActionPerformed(ActionEvent e) {
