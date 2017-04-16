@@ -28,6 +28,16 @@ public class MainFrame extends JFrame {
                                     {0, 3, 0, 2, 0, 2},
                                     {0, 0, 0, 3, 0, 0},
                                     {0, 0, 0, 0, 0, 0}};
+
+
+    //MATRIX TO TEST ALL BOXES
+    /*
+    private int[][] initialMatrix = {{0, 8, 8, 8, 8, 0},
+                                    {0, 2, 2, 2, 7, 5},
+                                    {1, 0, 9, 3, 7, 5},
+                                    {0, 3, 9, 2, 7, 2},
+                                    {0, 0, 9, 3, 4, 4},
+                                    {0, 0, 9, 6, 6, 6}};*/
     private EightPuzzleAgent agent = new EightPuzzleAgent(new EightPuzzleState(initialMatrix));
     private JComboBox comboBoxSearchMethods;
     private JComboBox comboBoxHeuristics;
