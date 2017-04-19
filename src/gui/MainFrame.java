@@ -5,9 +5,8 @@ import agent.Solution;
 import eightpuzzle.EightPuzzleAgent;
 import eightpuzzle.EightPuzzleProblem;
 import eightpuzzle.EightPuzzleState;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -22,22 +21,22 @@ import searchmethods.SearchMethod;
 
 public class MainFrame extends JFrame {
 
-    private int[][] initialMatrix = {{0, 0, 0, 0, 0, 0},
+    /*private int[][] initialMatrix = {{0, 0, 0, 0, 0, 0},
                                     {0, 2, 2, 2, 0, 0},
                                     {1, 0, 0, 3, 0, 0},
                                     {0, 3, 0, 2, 0, 2},
                                     {0, 0, 0, 3, 0, 0},
                                     {0, 0, 0, 0, 0, 0}};
 
-
+*/
     //MATRIX TO TEST ALL BOXES
-    /*
-    private int[][] initialMatrix = {{0, 8, 8, 8, 8, 0},
-                                    {0, 2, 2, 2, 7, 5},
-                                    {1, 0, 9, 3, 7, 5},
-                                    {0, 3, 9, 2, 7, 2},
-                                    {0, 0, 9, 3, 4, 4},
-                                    {0, 0, 9, 6, 6, 6}};*/
+
+    private int[][] initialMatrix = {{0, 8, 8, 8, 8, 2},
+                                    {0, 0, 0, 0, 7, 0},
+                                    {1, 0, 9, 0, 7, 0},
+                                    {0, 0, 9, 0, 7, 0},
+                                    {0, 0, 9, 0, 4, 4},
+                                    {0, 0, 9, 6, 6, 6}};
     private EightPuzzleAgent agent = new EightPuzzleAgent(new EightPuzzleState(initialMatrix));
     private JComboBox comboBoxSearchMethods;
     private JComboBox comboBoxHeuristics;
@@ -118,12 +117,19 @@ public class MainFrame extends JFrame {
     private void configureTable() {
         puzzleTableModel = new PuzzleTableModel(agent.getEnvironment());
         tablePuzzle.setModel(puzzleTableModel);
-        tablePuzzle.setDefaultRenderer(Object.class, new PuzzleTileCellRenderer());
+
+        //TODO
+        tablePuzzle.setDefaultRenderer(Object.class,
+                new PuzzleTileCellRenderer(2/*PLACEHOLDER*/, initialMatrix.length-1));
+
         for (int i = 0; i < tablePuzzle.getColumnCount(); i++) {
             tablePuzzle.getColumnModel().getColumn(i).setPreferredWidth(Properties.CELL_WIDTH);
         }
         tablePuzzle.setRowHeight(Properties.CELL_HEIGHT);
         tablePuzzle.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        //PARA TIRAR A GRID
+        tablePuzzle.setShowGrid(false);
     }
 
     public void buttonInitialState_ActionPerformed(ActionEvent e) {

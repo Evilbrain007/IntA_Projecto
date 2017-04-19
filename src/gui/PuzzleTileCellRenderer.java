@@ -2,19 +2,19 @@ package gui;
 
 import utils.ImageLoader;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 
 public class PuzzleTileCellRenderer extends JLabel implements TableCellRenderer {
 
-    public PuzzleTileCellRenderer() {
-        setBackground(Color.WHITE);
-        setOpaque(true);
-        setFont(new Font("Monospaced", Font.BOLD, 49));
-        this.setHorizontalAlignment(SwingConstants.CENTER);
+    private int saidaLine;
+    private  int saidaColumn;
+
+    public PuzzleTileCellRenderer(int saidaLine, int saidaColumn) {
+        this.saidaLine = saidaLine;
+        this.saidaColumn = saidaColumn;
+        setBorder(null);
     }
 
     public Component getTableCellRendererComponent(JTable table, Object value,
@@ -22,8 +22,8 @@ public class PuzzleTileCellRenderer extends JLabel implements TableCellRenderer 
             boolean hasFocus, int row,
             int column) {
         
-        String text = ((Integer) value == 0) ? "" : value.toString();
-        setText(text);
+//        String text = ((Integer) value == 0) ? "" : value.toString();
+//        setText(text);
 
 
 
@@ -69,21 +69,22 @@ public class PuzzleTileCellRenderer extends JLabel implements TableCellRenderer 
 
 
         /*LOADING EACH IMAGE WITH AN ALGORITM*/
-//        ImageLoader loader = ImageLoader.getLoader();
-//        setText("");
-//
-//        int val = (Integer)value;
-//        if (val == 0) {
-//            setIcon(loader.getIcon(Properties.EMPTY_IMAGE));
-//        } else if (val == 1){
-//            setIcon(loader.getIcon("forklift.png"));
-//        }else {
-//            String orientation = val % 2 == 0 ? "H" : "V";
-//            String imageIndex = val / 2 == 1 ? "" : val/2 + "";
-//
-//            setIcon(loader.getIcon("wall"+orientation+imageIndex+".png"));
-//        }
+        ImageLoader loader = ImageLoader.getLoader();
 
+        int val = (Integer)value;
+        if (row==saidaLine&&column==saidaColumn) {
+            setIcon(loader.getIcon("door"+Properties.IMAGE_SUFFIX));
+        } else if (val == 1){
+            setIcon(loader.getIcon("forklift"+Properties.IMAGE_SUFFIX));
+        }else if(val == 0) {
+            setIcon(loader.getIcon(Properties.EMPTY_IMAGE));
+        }else {
+                String orientation = val % 2 == 0 ? "H" : "V";
+                String imageIndex = val / 2 == 1 ? "" : val/2 + "";
+
+                setIcon(loader.getIcon("wall"+orientation+imageIndex+Properties.IMAGE_SUFFIX));
+
+        }
 
 /*
         if (((Integer) value).intValue() == 0) {
