@@ -12,6 +12,7 @@ public class EightPuzzleState extends State implements Cloneable {
                                        {6, 7, 8}};
     static final int[] linesfinalMatrix = {0, 0, 0, 1, 1, 1, 2, 2, 2};
     static final int[] colsfinalMatrix = {0, 1, 2, 0, 1, 2, 0, 1, 2};
+
     public static final int SIZE = 3;
     private int[][] matrix;
     private int lineBlank;
