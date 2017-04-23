@@ -30,7 +30,7 @@ public class PuzzleTableModel extends AbstractTableModel implements MontaCargasL
     }
 
     public Object getValueAt(int row, int col) {
-        return new Integer(puzzle.getTileValue(row, col));
+        return puzzle.getTileValue(row, col);
     }
 
     public void puzzleChanged(MontaCargasEvent pe){
