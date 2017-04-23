@@ -14,7 +14,7 @@ public class Agent<E extends State> {
 
     public Agent(E environment) {
         this.environment = environment;
-        searchMethods = new ArrayList<SearchMethod>();
+        searchMethods = new ArrayList<>();
         searchMethods.add(new BreadthFirstSearch());
         searchMethods.add(new UniformCostSearch());
         searchMethods.add(new DepthFirstSearch());
@@ -25,7 +25,7 @@ public class Agent<E extends State> {
         searchMethods.add(new BeamSearch());
         searchMethods.add(new IDAStarSearch());
         searchMethod = searchMethods.get(0);
-        heuristics = new ArrayList<Heuristic>();
+        heuristics = new ArrayList<>();
     }
 
     public Solution solveProblem(Problem problem) {

@@ -24,12 +24,19 @@ import searchmethods.SearchMethod;
 
 public class MainFrame extends JFrame {
 
-    private int[][] initialMatrix = {{0, 0, 0, 0, 0, 0},
+    /*private int[][] initialMatrix = {{0, 0, 0, 0, 0, 0},
                                     {0, 2, 2, 2, 0, 0},
                                     {1, 0, 0, 3, 0, 0},
                                     {0, 3, 0, 2, 0, 2},
                                     {0, 0, 0, 3, 0, 0},
-                                    {0, 0, 0, 0, 0, 0}};
+                                    {0, 0, 0, 0, 0, 0}};*/
+
+    private int[][] initialMatrix = {{0, 8, 8, 8, 8, 2},
+            {0, 0, 0, 0, 7, 0},
+            {1, 0, 9, 5, 7, 0},
+            {0, 3, 9, 5, 7, 0},
+            {0, 0, 9, 0, 4, 4},
+            {0, 0, 9, 6, 6, 6}};
     private MontaCargasAgent agent = new MontaCargasAgent(new MontaCargasState(initialMatrix));
     private JComboBox comboBoxSearchMethods;
     private JComboBox comboBoxHeuristics;
@@ -116,6 +123,8 @@ public class MainFrame extends JFrame {
         }
         tablePuzzle.setRowHeight(Properties.CELL_HEIGHT);
         tablePuzzle.setBorder(BorderFactory.createLineBorder(Color.black));
+        tablePuzzle.setShowGrid(false);
+
     }
 
     public void buttonInitialState_ActionPerformed(ActionEvent e) {
