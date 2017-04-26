@@ -82,7 +82,7 @@ public class MainFrame extends JFrame {
         buttonReset.addActionListener(new ButtonReset_ActionAdapter(this));
 
         JPanel panelSearchMethods = new JPanel(new FlowLayout());
-        comboBoxSearchMethods = new JComboBox(agent.getSearchMethodsArray());
+        comboBoxSearchMethods = new JComboBox<>(agent.getSearchMethodsArray());
         panelSearchMethods.add(comboBoxSearchMethods);
         comboBoxSearchMethods.addActionListener(new ComboBoxSearchMethods_ActionAdapter(this));
         panelSearchMethods.add(labelSearchParameter);
@@ -91,7 +91,7 @@ public class MainFrame extends JFrame {
         textFieldSearchParameter.setEnabled(false);
         textFieldSearchParameter.setHorizontalAlignment(JTextField.RIGHT);
         textFieldSearchParameter.addKeyListener(new TextFieldSearchParameter_KeyAdapter(this));
-        comboBoxHeuristics = new JComboBox(agent.getHeuristicsArray());
+        comboBoxHeuristics = new JComboBox<>(agent.getHeuristicsArray());
         panelSearchMethods.add(comboBoxHeuristics);
         comboBoxHeuristics.setEnabled(false);
         comboBoxHeuristics.addActionListener(new ComboBoxHeuristics_ActionAdapter(this));
