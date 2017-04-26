@@ -11,6 +11,11 @@ public abstract class GridObject {
     protected int size;
     protected Orientation orientation;
 
+    public int getSize() {
+        return size;
+    }
 
-
+    public Orientation getOrientation() {
+        return orientation;
+    }
 }

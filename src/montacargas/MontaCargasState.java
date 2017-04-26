@@ -3,6 +3,10 @@ package montacargas;
 import agent.Action;
 import agent.State;
 import gui.PuzzleTableModel;
+import montacargas.model.Box;
+import montacargas.model.Forklift;
+import montacargas.model.GridObject;
+import montacargas.model.Orientation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,6 +20,10 @@ public class MontaCargasState extends State implements Cloneable {
     //pode ou nao ser utilizado
     private int montaCargasRow;
     private int montaCargasColumn;
+    //lista de objectos do estado
+    private ArrayList<GridObject> gridObjects;
+
+
 
     public MontaCargasState(int[][] matrix) {
         this.matrix = new int[matrix.length][matrix.length];
@@ -27,6 +35,81 @@ public class MontaCargasState extends State implements Cloneable {
                 if(this.matrix[l][c] == 1){
                     montaCargasRow = l;
                     montaCargasColumn = c;
+                }
+            }
+        }
+
+        gridObjects = new ArrayList<>();
+        generateGridObjects();
+    }
+
+    public ArrayList<GridObject> getGridObjects() {
+        return gridObjects;
+    }
+
+    public void generateGridObjects(){
+        int[][] copy = new int[matrix.length][matrix.length];
+
+
+        for (int l = 0; l < matrix.length; l++) {
+            for (int c = 0; c <matrix.length; c++) {
+                copy[l][c]=matrix[l][c];
+            }
+            }
+
+        for (int l = 0; l < matrix.length; l++) {
+            for (int c = 0; c <matrix.length; c++) {
+                int cell = copy[l][c];
+                if(cell == 1){
+                    gridObjects.add(new Forklift(l, c));
+                } else if(cell!=0){
+                    Box box = new Box(l, c, cell);
+                    gridObjects.add(box);
+                    int boxSize = box.getSize();
+                    Orientation boxOriention = box.getOrientation();
+
+                    //consoante o tamanho e orientação das caixas vamos eliminando posicoes adjacentes onde surja o mm
+                    //num de caixa, para que cd uma so conte uma vez
+                    if(boxOriention.equals(Orientation.HORIZONTAL)){
+                        for (int i = 1; i < boxSize; i++) {
+                            copy[l][c+i] = 0;
+                        }
+                    } else{
+                        for (int i = 1; i < boxSize; i++) {
+                            copy[l+i][c] = 0;
+                        }
+                    }
+
+                    /*
+                    switch (boxSize){
+                        case 2:
+                            if(boxOriention.equals(Orientation.HORIZONTAL)){
+                                copy[l][c+1]= 0;
+                            } else{
+                                copy[l+1][c]=0;
+                            }
+                            break;
+                        case 3:
+                            if(boxOriention.equals(Orientation.HORIZONTAL)){
+                                copy[l][c+1]= 0;
+                                copy[l][c+2] = 0;
+                            } else{
+                                copy[l+1][c]=0;
+                                copy[l+2][c]=0;
+                            }
+                            break;
+                        case 4:
+                            if(boxOriention.equals(Orientation.HORIZONTAL)){
+                                copy[l][c+1] = 0;
+                                copy[l][c+2] = 0;
+                                copy[l][c+3] = 0;
+                            } else{
+                                copy[l+1][c]=0;
+                                copy[l+2][c]=0;
+                                copy[l+3][c]=0;
+                            }
+                    } */
+
                 }
             }
         }

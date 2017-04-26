@@ -25,4 +25,5 @@ public class Box extends GridObject {
 
     }
 
+
 }
