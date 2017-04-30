@@ -10,6 +10,7 @@ public abstract class GridObject {
     protected Point position;
     protected int size;
     protected Orientation orientation;
+    protected int objectValue; //valor que o objecto tem consoante o seu tamanho e orientacao
 
     public int getSize() {
         return size;
@@ -21,5 +22,13 @@ public abstract class GridObject {
 
     public Point getPosition() {
         return position;
+    }
+
+    public int getObjectValue() {
+        return objectValue;
+    }
+
+    public void setPosition(Point position) {
+        this.position = position;
     }
 }

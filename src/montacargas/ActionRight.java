@@ -15,7 +15,7 @@ public class ActionRight extends Action<MontaCargasState>{
 
     public boolean isValid(MontaCargasState state){
 
-        return false;
-                //state.canMoveRight();
+        return state.canMoveCurrentObjRight();
+
     }
 }

@@ -15,7 +15,7 @@ public class ActionDown extends Action<MontaCargasState>{
 
     public boolean isValid(MontaCargasState state){
 
-        return state.canMoveDown();
+        return state.canMoveCurrentObjDown();
 
     }
 }

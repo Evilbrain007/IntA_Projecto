@@ -11,5 +11,6 @@ public class Forklift extends GridObject {
         this.position = new Point(x, y);
         this.orientation = Orientation.HORIZONTAL;
         this.size = 1;
+        this.objectValue = 1;
     }
 }

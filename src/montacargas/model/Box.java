@@ -22,6 +22,7 @@ public class Box extends GridObject {
 
         //a partir do numero da caixa inferimos o seu tamanho (conjunto de 2, 3 ou 4 caixas)
         this.size = boxNum/2;
+        this.objectValue = boxNum;
 
     }
 

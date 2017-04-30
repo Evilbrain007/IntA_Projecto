@@ -2,7 +2,6 @@ package montacargas;
 
 import agent.Action;
 import agent.State;
-import gui.PuzzleTableModel;
 import montacargas.model.Box;
 import montacargas.model.Forklift;
 import montacargas.model.GridObject;
@@ -200,31 +199,31 @@ public class MontaCargasState extends State implements Cloneable {
         }
     }
 
-    public boolean canMoveDown() {
+    public boolean canMoveCurrentObjDown() {
 
-        return canMove(Orientation.HORIZONTAL, gridObjects.get(currentObject).getSize(), 0);
-
-    }
-
-    public boolean canMoveUp() {
-
-        return canMove(Orientation.VERTICAL, -1, 0);
+        return canMoveCurrentObj(Orientation.HORIZONTAL, gridObjects.get(currentObject).getSize(), 0);
 
     }
 
-    public boolean canMoveRight() {
+    public boolean canMoveCurrentObjUp() {
 
-        return canMove(Orientation.HORIZONTAL, 0, gridObjects.get(currentObject).getSize());
-
-    }
-
-    public boolean canMoveLeft() {
-
-        return canMove(Orientation.HORIZONTAL, 0, -1);
+        return canMoveCurrentObj(Orientation.VERTICAL, -1, 0);
 
     }
 
-    public boolean canMove(Orientation orientation, int xToAdd, int yToAdd){
+    public boolean canMoveCurrentObjRight() {
+
+        return canMoveCurrentObj(Orientation.HORIZONTAL, 0, gridObjects.get(currentObject).getSize());
+
+    }
+
+    public boolean canMoveCurrentObjLeft() {
+
+        return canMoveCurrentObj(Orientation.HORIZONTAL, 0, -1);
+
+    }
+
+    public boolean canMoveCurrentObj(Orientation orientation, int xToAdd, int yToAdd){
         //vai buscar o objecto que esta naquele indice da grid
         //e verifica a orientacao desse objecto
         GridObject object = gridObjects.get(currentObject);
@@ -237,7 +236,7 @@ public class MontaCargasState extends State implements Cloneable {
             //vamos buscar a posicao do objecto antigo e fazemos uma nova posicao que é aquela para onde keremos mover
             //o X corresponde às linhas e o Y as colunas
             // o xToAdd e o YToAdd são a quantidade de linhas ou colunas que queremos andar na vertical ou na horizontal
-            //cada um deles ja foi verificado nos metodos especificos (canMoveDown, CanmoveUpt etc.
+            //cada um deles ja foi verificado nos metodos especificos (canMoveCurrentObjDown, CanmoveUpt etc.
             Point oldPosition = object.getPosition();
             Point potentialPosition = new Point(oldPosition.x + xToAdd, oldPosition.y + yToAdd);
 
@@ -249,5 +248,62 @@ public class MontaCargasState extends State implements Cloneable {
         }
 
         return false;
+    }
+
+  /*  public void setTileValue(int value){
+
+    }*/
+
+    public void moveCurrentObjRight(){
+
+        //precisamos sp do objectsize para kd chamamos o moveCurrentObj dizermos
+        //em que extençao e em que direccao (+ ou -) vai ser feita a acçao
+        int objectSize = gridObjects.get(currentObject).getSize();
+        moveCurrentObj(0, 1, objectSize);
+
+    }
+
+    public void moveCurrentObjLeft(){
+
+        int objectSize = gridObjects.get(currentObject).getSize();
+        moveCurrentObj(0, -1, -objectSize);
+
+    }
+
+    public void moveCurrentObjDown(){
+
+        int objectSize = gridObjects.get(currentObject).getSize();
+        moveCurrentObj(1, 0, objectSize);
+
+    }
+
+    public void moveCurrentObjUp(){
+
+        int objectSize = gridObjects.get(currentObject).getSize();
+        moveCurrentObj(-1, 0, -objectSize);
+
+    }
+
+    public void moveCurrentObj(int xToAdd, int yToAdd, int toMove){
+
+        GridObject object = gridObjects.get(currentObject);
+        Point oldPosition = object.getPosition();
+
+        Point newPosition = new Point(oldPosition.x + xToAdd, oldPosition.y + yToAdd);
+
+        if (object.getOrientation() == Orientation.HORIZONTAL){
+            //mudamos a 1a peça para a posicao a seguir a ultima
+            matrix[oldPosition.x][oldPosition.y + toMove] = object.getObjectValue();
+        } else {
+            //mudamos a 1a peça para a posicao a seguir a ultima
+            matrix[oldPosition.x + toMove][oldPosition.y] = object.getObjectValue();
+        }
+
+        //limpamos a posiçao anterior onde estava a peça antes de a movermos
+        matrix[oldPosition.x][oldPosition.y] = 0;
+
+        //dizemos ao objecto qual é agora a nova posicao dele
+        object.setPosition(newPosition);
+
     }
 }
