@@ -1,7 +1,6 @@
 package montacargas;
 
 import agent.Action;
-import eightpuzzle.EightPuzzleState;
 
 public class ActionUp extends Action<MontaCargasState>{
 

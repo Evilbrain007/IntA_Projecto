@@ -1,7 +1,6 @@
 package montacargas;
 
 import agent.Action;
-import eightpuzzle.EightPuzzleState;
 
 public class ActionDown extends Action<MontaCargasState>{
 
@@ -16,7 +15,7 @@ public class ActionDown extends Action<MontaCargasState>{
 
     public boolean isValid(MontaCargasState state){
 
-        return false;
-                //state.canMoveDown();
+        return state.canMoveDown();
+
     }
 }

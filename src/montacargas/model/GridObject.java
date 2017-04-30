@@ -18,4 +18,8 @@ public abstract class GridObject {
     public Orientation getOrientation() {
         return orientation;
     }
+
+    public Point getPosition() {
+        return position;
+    }
 }
