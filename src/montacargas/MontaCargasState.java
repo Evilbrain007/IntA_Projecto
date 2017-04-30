@@ -7,6 +7,7 @@ import montacargas.model.Forklift;
 import montacargas.model.GridObject;
 import montacargas.model.Orientation;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -150,8 +151,18 @@ public class MontaCargasState extends State implements Cloneable {
     }
 
     @Override
-    protected Object clone() {
+    public Object clone() {
         return new MontaCargasState(this.matrix);
+    }
+
+    @Override
+    public Action getAction() {
+        if(this.action instanceof ActionWithObj){
+            ActionWithObj actionWithObj = (ActionWithObj) this.action;
+            actionWithObj.setObjIndex(this.currentObject);
+            return actionWithObj;
+        }
+        return this.action;
     }
 
     public int getNumRows() {
@@ -180,9 +191,8 @@ public class MontaCargasState extends State implements Cloneable {
 
     private boolean isValidPosition(int row, int col) {
         //verifica se o numero da linha e da coluna está dentro dos limites da matriz
-        return !(row < 0 || col < 0) && !(row > matrix.length || col > matrix.length);
 
-        //return line >= 0 && line < matrix.length && column >= 0 && column < matrix[0].length;
+        return row >= 0 && row < matrix.length && col >= 0 && col < matrix[0].length;
 
     }
 
@@ -201,7 +211,7 @@ public class MontaCargasState extends State implements Cloneable {
 
     public boolean canMoveCurrentObjDown() {
 
-        return canMoveCurrentObj(Orientation.HORIZONTAL, gridObjects.get(currentObject).getSize(), 0);
+        return canMoveCurrentObj(Orientation.VERTICAL, gridObjects.get(currentObject).getSize(), 0);
 
     }
 
@@ -280,6 +290,7 @@ public class MontaCargasState extends State implements Cloneable {
     public void moveCurrentObjUp(){
 
         int objectSize = gridObjects.get(currentObject).getSize();
+
         moveCurrentObj(-1, 0, -objectSize);
 
     }
@@ -294,6 +305,7 @@ public class MontaCargasState extends State implements Cloneable {
         if (object.getOrientation() == Orientation.HORIZONTAL){
             //mudamos a 1a peça para a posicao a seguir a ultima
             matrix[oldPosition.x][oldPosition.y + toMove] = object.getObjectValue();
+
         } else {
             //mudamos a 1a peça para a posicao a seguir a ultima
             matrix[oldPosition.x + toMove][oldPosition.y] = object.getObjectValue();
@@ -305,5 +317,18 @@ public class MontaCargasState extends State implements Cloneable {
         //dizemos ao objecto qual é agora a nova posicao dele
         object.setPosition(newPosition);
 
+    }
+
+    public Forklift getForklift() {
+        for (GridObject obj: this.gridObjects) {
+            if(obj instanceof Forklift){
+                return (Forklift)obj;
+            }
+        }
+        return null;
+    }
+
+    public int getMatrixSize() {
+        return this.matrix.length;
     }
 }

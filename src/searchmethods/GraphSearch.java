@@ -35,7 +35,36 @@ public abstract class GraphSearch<L extends NodeCollection> implements SearchMet
         return failure
      */
     protected Solution graphSearch(Problem problem) {
-        //TODO
+        //initialize the frontier using the initial state of problem
+        frontier.clear();
+        //cd vez k keremos acrescentar algo a fronteiroa temos k crair um nó
+        frontier.add(new Node(problem.getInitialState()));
+
+        //initialize the explored set to be empty
+        explored.clear();
+//        while(frontier is not empty), ie, qd ja nao ha mais nos para expandir
+        while (!frontier.isEmpty() && !stopped){ //se a flag stopped nao estiver a true
+
+            //        remove the first node from the frontier
+            Node node = frontier.poll();
+
+//        if the node contains a goal state then
+            if(problem.isGoal(node.getState())){
+                //  return the corresponding solution
+                return new Solution(problem, node);
+            }
+//        add the node to the explored set
+            explored.add(node.getState());
+//        expand the node, adding the resulting nodes to the frontier only if
+//        not in the frontier or explored set
+            List<State> sucssessors = problem.executeActions(node.getState());
+            addSuccessorsToFrontier(sucssessors, node);
+
+            computeStatistics(sucssessors.size());
+
+        }
+
+//        return failure
         return null;
     }
 

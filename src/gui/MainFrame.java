@@ -2,9 +2,6 @@ package gui;
 
 import agent.Heuristic;
 import agent.Solution;
-import eightpuzzle.EightPuzzleAgent;
-import eightpuzzle.EightPuzzleProblem;
-import eightpuzzle.EightPuzzleState;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -17,6 +14,7 @@ import java.util.NoSuchElementException;
 import javax.swing.*;
 
 import montacargas.MontaCargasAgent;
+import montacargas.MontaCargasProblem;
 import montacargas.MontaCargasState;
 import searchmethods.BeamSearch;
 import searchmethods.DepthLimitedSearch;
@@ -174,9 +172,8 @@ public class MainFrame extends JFrame {
                 buttonStop.setEnabled(true);
                 try {
                     prepareSearchAlgorithm();
-                    //TODO
-                    /*EightPuzzleProblem problem = new EightPuzzleProblem((EightPuzzleState) agent.getEnvironment().clone());
-                    agent.solveProblem(problem);*/
+                    MontaCargasProblem problem = new MontaCargasProblem((MontaCargasState)agent.getEnvironment().clone());
+                    agent.solveProblem(problem);
                 } catch (Exception e) {
                     e.printStackTrace(System.err);
                 }
