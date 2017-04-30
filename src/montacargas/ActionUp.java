@@ -9,8 +9,8 @@ public class ActionUp extends Action<MontaCargasState>{
     }
 
     public void execute(MontaCargasState state){
-       //state.moveUp();
-        state.setAction(this);
+       state.moveCurrentObjUp();
+       state.setAction(this);
     }
 
     public boolean isValid(MontaCargasState state){

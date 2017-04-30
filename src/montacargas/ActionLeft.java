@@ -9,7 +9,7 @@ public class ActionLeft extends Action<MontaCargasState>{
     }
 
     public void execute(MontaCargasState state){
-        //state.moveLeft();
+       state.moveCurrentObjLeft();
         state.setAction(this);
     }
 

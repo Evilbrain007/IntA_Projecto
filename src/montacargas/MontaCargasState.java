@@ -223,7 +223,7 @@ public class MontaCargasState extends State implements Cloneable {
 
     }
 
-    public boolean canMoveCurrentObj(Orientation orientation, int xToAdd, int yToAdd){
+    private boolean canMoveCurrentObj(Orientation orientation, int xToAdd, int yToAdd){
         //vai buscar o objecto que esta naquele indice da grid
         //e verifica a orientacao desse objecto
         GridObject object = gridObjects.get(currentObject);
@@ -284,7 +284,7 @@ public class MontaCargasState extends State implements Cloneable {
 
     }
 
-    public void moveCurrentObj(int xToAdd, int yToAdd, int toMove){
+    private void moveCurrentObj(int xToAdd, int yToAdd, int toMove){
 
         GridObject object = gridObjects.get(currentObject);
         Point oldPosition = object.getPosition();
