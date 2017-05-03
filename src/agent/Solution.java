@@ -18,8 +18,7 @@ public class Solution {
     }
 
     public double getCost(){
-        //TODO
-        return 0;//problem.computePathCost(actions);
+        return problem.computePathCost(actions);
     }
 
     public List<Action> getActions(){

@@ -56,6 +56,7 @@ public class MontaCargasState extends State implements Cloneable {
 
     public void generateGridObjects() {
         int[][] copy = new int[matrix.length][matrix.length];
+        this.gridObjects = new ArrayList<>();
 
 
         for (int l = 0; l < matrix.length; l++) {
@@ -283,6 +284,7 @@ public class MontaCargasState extends State implements Cloneable {
     public void moveCurrentObjDown(){
 
         int objectSize = gridObjects.get(currentObject).getSize();
+
         moveCurrentObj(1, 0, objectSize);
 
     }
@@ -316,6 +318,7 @@ public class MontaCargasState extends State implements Cloneable {
 
         //dizemos ao objecto qual é agora a nova posicao dele
         object.setPosition(newPosition);
+        generateGridObjects();
 
     }
 

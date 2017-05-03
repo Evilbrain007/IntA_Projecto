@@ -51,6 +51,8 @@ public class MontaCargasProblem extends Problem<MontaCargasState> {
                         successor.executeAction(action);
                     }catch (Exception e){
                         action.isValid(state);
+                        successor = (MontaCargasState) state.clone();
+                        successor.setCurrentObject(i);
                         successor.executeAction(action);
                     }
 
