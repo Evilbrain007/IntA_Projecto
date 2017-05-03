@@ -2,17 +2,18 @@ package gui;
 
 import utils.ImageLoader;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
+import java.awt.*;
+import java.util.LinkedList;
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 
 public class PuzzleTileCellRenderer extends JLabel implements TableCellRenderer {
 
     private int doorLine = -1;
+    private LinkedList<Point> boxPositions;
 
-    public PuzzleTileCellRenderer() {
+    public PuzzleTileCellRenderer(LinkedList<Point> boxPositions) {
+       this.boxPositions = boxPositions;
        setBorder(null);
     }
 
@@ -57,7 +58,17 @@ public class PuzzleTileCellRenderer extends JLabel implements TableCellRenderer 
                 //tem numero e devolvemos string vazia "", se nao, devolvemos o resultado da divisao
                 //converito pa string
                 String imgIndex = val/2==1 ? "" : val/2 + "";
-                setIcon(loader.getIcon(Properties.IMAGE_PREFIX + imgOrientation +  imgIndex + Properties.IMAGE_SUFFIX));
+
+
+                String alternate = "";
+                for(Point position : this.boxPositions){
+                    if(position.x==row && position.y==column && val!=2 && val!=3){
+                        alternate = "_1";
+                        break;
+                    }
+                }
+
+                setIcon(loader.getIcon(Properties.IMAGE_PREFIX + imgOrientation +  imgIndex + alternate + Properties.IMAGE_SUFFIX));
 
         }
 

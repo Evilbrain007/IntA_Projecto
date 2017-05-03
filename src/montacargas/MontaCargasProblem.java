@@ -34,6 +34,8 @@ public class MontaCargasProblem extends Problem<MontaCargasState> {
         LinkedList<MontaCargasState> successors = new LinkedList<>();
         ArrayList<GridObject> gridObjects = state.getGridObjects();
 
+        int stateObject = state.getCurrentObject();
+
         for (Action action: this.actions){
             for (int i = 0; i < gridObjects.size(); i++) {
                 //a cada iteraçao diz ao MontaCargasState qual o objecto corrente em k o ciclo está
@@ -61,7 +63,7 @@ public class MontaCargasProblem extends Problem<MontaCargasState> {
                 }
             }
         }
-
+        state.setCurrentObject(stateObject);
         return successors;
     }
 

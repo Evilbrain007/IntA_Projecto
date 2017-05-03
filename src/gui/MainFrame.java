@@ -115,11 +115,13 @@ public class MainFrame extends JFrame {
     private void configureTable() {
         puzzleTableModel = new PuzzleTableModel(agent.getEnvironment());
         tablePuzzle.setModel(puzzleTableModel);
-        tablePuzzle.setDefaultRenderer(Object.class, new PuzzleTileCellRenderer());
+        tablePuzzle.setDefaultRenderer(Object.class, new PuzzleTileCellRenderer((agent.getEnvironment().getBoxPositions())));
         for (int i = 0; i < tablePuzzle.getColumnCount(); i++) {
             tablePuzzle.getColumnModel().getColumn(i).setPreferredWidth(Properties.CELL_WIDTH);
         }
         tablePuzzle.setRowHeight(Properties.CELL_HEIGHT);
+        tablePuzzle.setRowMargin(0);
+        tablePuzzle.getColumnModel().setColumnMargin(0);
         tablePuzzle.setBorder(BorderFactory.createLineBorder(Color.black));
         tablePuzzle.setShowGrid(false);
 
@@ -130,6 +132,8 @@ public class MainFrame extends JFrame {
         try {
             if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
                 puzzleTableModel.setPuzzle(agent.readInitialStateFromFile(fc.getSelectedFile()));
+                //Será qie há outra maneira de fazer isto?
+                tablePuzzle.setDefaultRenderer(Object.class, new PuzzleTileCellRenderer((agent.getEnvironment().getBoxPositions())));
                 buttonSolve.setEnabled(true);
                 buttonShowSolution.setEnabled(false);
                 buttonReset.setEnabled(false);

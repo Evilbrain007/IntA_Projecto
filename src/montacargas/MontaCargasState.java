@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 /**
  * Created by sorai on 15-Apr-17.
@@ -159,7 +160,16 @@ public class MontaCargasState extends State implements Cloneable {
     @Override
     public Action getAction() {
         if(this.action instanceof ActionWithObj){
-            ActionWithObj actionWithObj = (ActionWithObj) this.action;
+            ActionWithObj actionWithObj = null;
+            if (this.action instanceof ActionDown){
+                actionWithObj = new ActionDown();
+            }else if (this.action instanceof ActionLeft){
+                actionWithObj = new ActionLeft();
+            }else if (this.action instanceof ActionRight){
+                actionWithObj = new ActionRight();
+            }else if (this.action instanceof ActionUp){
+                actionWithObj = new ActionUp();
+            }
             actionWithObj.setObjIndex(this.currentObject);
             return actionWithObj;
         }
@@ -270,14 +280,14 @@ public class MontaCargasState extends State implements Cloneable {
         //precisamos sp do objectsize para kd chamamos o moveCurrentObj dizermos
         //em que extençao e em que direccao (+ ou -) vai ser feita a acçao
         int objectSize = gridObjects.get(currentObject).getSize();
-        moveCurrentObj(0, 1, objectSize);
+        moveCurrentObj(0, 1, objectSize, 0);
 
     }
 
     public void moveCurrentObjLeft(){
 
         int objectSize = gridObjects.get(currentObject).getSize();
-        moveCurrentObj(0, -1, -objectSize);
+        moveCurrentObj(0, -1, -1, objectSize-1);
 
     }
 
@@ -285,7 +295,7 @@ public class MontaCargasState extends State implements Cloneable {
 
         int objectSize = gridObjects.get(currentObject).getSize();
 
-        moveCurrentObj(1, 0, objectSize);
+        moveCurrentObj(1, 0, objectSize, 0);
 
     }
 
@@ -293,11 +303,11 @@ public class MontaCargasState extends State implements Cloneable {
 
         int objectSize = gridObjects.get(currentObject).getSize();
 
-        moveCurrentObj(-1, 0, -objectSize);
+        moveCurrentObj(-1, 0, -1, objectSize-1);
 
     }
 
-    private void moveCurrentObj(int xToAdd, int yToAdd, int toMove){
+    private void moveCurrentObj(int xToAdd, int yToAdd, int toMove, int toErase){
 
         GridObject object = gridObjects.get(currentObject);
         Point oldPosition = object.getPosition();
@@ -307,14 +317,15 @@ public class MontaCargasState extends State implements Cloneable {
         if (object.getOrientation() == Orientation.HORIZONTAL){
             //mudamos a 1a peça para a posicao a seguir a ultima
             matrix[oldPosition.x][oldPosition.y + toMove] = object.getObjectValue();
+            matrix[oldPosition.x][oldPosition.y + toErase] = 0;
 
         } else {
             //mudamos a 1a peça para a posicao a seguir a ultima
             matrix[oldPosition.x + toMove][oldPosition.y] = object.getObjectValue();
+            matrix[oldPosition.x + toErase][oldPosition.y] = 0;
         }
 
         //limpamos a posiçao anterior onde estava a peça antes de a movermos
-        matrix[oldPosition.x][oldPosition.y] = 0;
 
         //dizemos ao objecto qual é agora a nova posicao dele
         object.setPosition(newPosition);
@@ -333,5 +344,18 @@ public class MontaCargasState extends State implements Cloneable {
 
     public int getMatrixSize() {
         return this.matrix.length;
+    }
+
+    public LinkedList<Point> getBoxPositions() {
+        LinkedList<Point> boxPositions = new LinkedList<>();
+        for (GridObject gridObject : this.gridObjects){
+            boxPositions.add(gridObject.getPosition());
+        }
+
+        return boxPositions;
+    }
+
+    public int getCurrentObject() {
+        return currentObject;
     }
 }

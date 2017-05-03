@@ -1,8 +1,5 @@
 package gui;
 
-import eightpuzzle.EightPuzzleEvent;
-import eightpuzzle.EightPuzzleListener;
-import eightpuzzle.EightPuzzleState;
 import montacargas.MontaCargasEvent;
 import montacargas.MontaCargasListener;
 import montacargas.MontaCargasState;
