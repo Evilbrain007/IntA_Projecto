@@ -15,9 +15,9 @@ public class BreadthFirstSearch extends GraphSearch<NodeLinkedList> {
         //se o sucessor nao esta na fronteira nem na lista de nós explorados
         //entaoacrescentar sucessor ao fim da fronteira (first in first out)
 
-        for (State sucsessor : successors) {
-            if (!frontier.containsState(sucsessor) && !(explored.contains(sucsessor))){
-                frontier.addLast(new Node(sucsessor, parent));
+        for (State successor : successors) {
+            if (!frontier.containsState(successor) && !(explored.contains(successor))){
+                frontier.addLast(new Node(successor, parent));
                 //parent é o no original que foi passado como parametro na funcao
             }
         }
