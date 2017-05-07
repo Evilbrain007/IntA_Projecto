@@ -317,15 +317,16 @@ public class MontaCargasState extends State implements Cloneable {
         if (object.getOrientation() == Orientation.HORIZONTAL){
             //mudamos a 1a peça para a posicao a seguir a ultima
             matrix[oldPosition.x][oldPosition.y + toMove] = object.getObjectValue();
-            matrix[oldPosition.x][oldPosition.y + toErase] = 0;
+            //limpamos a posiçao anterior onde estava a peça antes de a movermos
+            matrix[oldPosition.x][oldPosition.y +toErase] = 0;
 
         } else {
             //mudamos a 1a peça para a posicao a seguir a ultima
             matrix[oldPosition.x + toMove][oldPosition.y] = object.getObjectValue();
+            //limpamos a posiçao anterior onde estava a peça antes de a movermos
             matrix[oldPosition.x + toErase][oldPosition.y] = 0;
         }
 
-        //limpamos a posiçao anterior onde estava a peça antes de a movermos
 
         //dizemos ao objecto qual é agora a nova posicao dele
         object.setPosition(newPosition);
