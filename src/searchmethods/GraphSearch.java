@@ -37,7 +37,7 @@ public abstract class GraphSearch<L extends NodeCollection> implements SearchMet
     protected Solution graphSearch(Problem problem) {
         //initialize the frontier using the initial state of problem
         frontier.clear();
-        //cd vez k keremos acrescentar algo a fronteiroa temos k crair um nó
+        //cd vez k keremos acrescentar algo a fronteiroa temos k criar um nó
         frontier.add(new Node(problem.getInitialState()));
 
         //initialize the explored set to be empty
@@ -57,10 +57,10 @@ public abstract class GraphSearch<L extends NodeCollection> implements SearchMet
             explored.add(node.getState());
 //        expand the node, adding the resulting nodes to the frontier only if
 //        not in the frontier or explored set
-            List<State> sucssessors = problem.executeActions(node.getState());
-            addSuccessorsToFrontier(sucssessors, node);
+            List<State> successors = problem.executeActions(node.getState());
+            addSuccessorsToFrontier(successors, node);
 
-            computeStatistics(sucssessors.size());
+            computeStatistics(successors.size());
 
         }
 

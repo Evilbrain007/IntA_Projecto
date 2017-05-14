@@ -49,17 +49,11 @@ public class MontaCargasProblem extends Problem<MontaCargasState> {
                     MontaCargasState successor = (MontaCargasState) state.clone();
                     successor.setCurrentObject(i);
 
-                    try {
-                        successor.executeAction(action);
-                    }catch (Exception e){
-                        action.isValid(state);
-                        successor = (MontaCargasState) state.clone();
-                        successor.setCurrentObject(i);
-                        successor.executeAction(action);
-                    }
+                    successor.executeAction(action);
 
                     //guardamos o estado na lista de sucessores
                     successors.add(successor);
+
                 }
             }
         }

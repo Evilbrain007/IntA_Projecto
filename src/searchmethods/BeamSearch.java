@@ -18,7 +18,17 @@ public class BeamSearch extends AStarSearch {
 
     @Override
     public void addSuccessorsToFrontier(List<State> successors, Node parent) {
-        //TODO
+        super.addSuccessorsToFrontier(successors, parent);
+
+        NodePriorityQueue nodePriorityQueue = new NodePriorityQueue();
+
+        while(nodePriorityQueue.size() <= beamSize && frontier.size() > 0){
+
+            nodePriorityQueue.add(frontier.poll()); //o poll devolve o k esta na cabeça da fronteira (os k tem
+            //prioridade
+
+        }
+        this.frontier = nodePriorityQueue;
     }
 
     public void setBeamSize(int beamSize) {

@@ -151,6 +151,9 @@ public class MontaCargasState extends State implements Cloneable {
         return Arrays.deepEquals(this.matrix, state.matrix);
 
     }
+    public int[][] getM(){
+        return matrix;
+    }
 
     @Override
     public Object clone() {

@@ -17,8 +17,7 @@ public abstract class InformedSearch extends GraphSearch<NodePriorityQueue>{
     @Override
     public Solution search(Problem problem) {
         stopped = false;
-        //TODO
-        //this.heuristic = problem.getHeuristic();
+        this.heuristic = problem.getHeuristic();
         return graphSearch(problem);
     }    
 }
