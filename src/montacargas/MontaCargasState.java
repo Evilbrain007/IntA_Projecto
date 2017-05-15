@@ -132,7 +132,12 @@ public class MontaCargasState extends State implements Cloneable {
 
     @Override
     public int hashCode() {
-        return gridObjects.hashCode();
+        int result = Arrays.deepHashCode(matrix);
+        result = 31 * result + montaCargasRow;
+        result = 31 * result + montaCargasColumn;
+        result = 31 * result + (gridObjects != null ? gridObjects.hashCode() : 0);
+        result = 31 * result + currentObject;
+        return result;
     }
 
     @Override

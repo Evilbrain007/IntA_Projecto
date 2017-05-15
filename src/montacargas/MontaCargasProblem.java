@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.locks.LockSupport;
 
 /**
  * Created by sorai on 23-Apr-17.
@@ -33,6 +34,8 @@ public class MontaCargasProblem extends Problem<MontaCargasState> {
 
         LinkedList<MontaCargasState> successors = new LinkedList<>();
         ArrayList<GridObject> gridObjects = state.getGridObjects();
+
+
 
         int stateObject = state.getCurrentObject();
 
