@@ -10,16 +10,16 @@ import utils.NodeCollection;
 
 public abstract class GraphSearch<L extends NodeCollection> implements SearchMethod {
 
-    protected L frontier;
+    protected L frontier; //tem que ser algo que extenda de NodeCollection
     protected Set<State> explored = new HashSet<State>();
     protected Statistics statistics = new Statistics();    
     protected boolean stopped;
 
-    @Override
+    @Override //metodo da interface SearchMethod
     public Solution search(Problem problem) {
         statistics.reset();
         stopped = false;
-        return graphSearch(problem);
+        return graphSearch(problem); //chama o metodo graphSeardesta classe e devolve a solucao por ele encontrada
     }
 
     /*
@@ -35,36 +35,43 @@ public abstract class GraphSearch<L extends NodeCollection> implements SearchMet
         return failure
      */
     protected Solution graphSearch(Problem problem) {
-        //initialize the frontier using the initial state of problem
-        frontier.clear();
+        //inicializar a fronteira usando o estado inicial do problema
         //cd vez k keremos acrescentar algo a fronteiroa temos k criar um nó
+        frontier.clear();
         frontier.add(new Node(problem.getInitialState()));
 
-        //initialize the explored set to be empty
+        //inicializa a lista de nos explorados vazia
         explored.clear();
-//        while(frontier is not empty), ie, qd ja nao ha mais nos para expandir
-        while (!frontier.isEmpty() && !stopped){ //se a flag stopped nao estiver a true
 
-            //        remove the first node from the frontier
+        //ekto a fronteira não estiver vazia, ie, qd ja nao ha mais nos para expandir e
+        //se a flag stopped nao estiver a true
+        while (!frontier.isEmpty() && !stopped){
+
+            // o poll() remove o no da fronteira e guarda esse no num objecto Node
+            //para que depois esse no seja usado para expandir
             Node node = frontier.poll();
 
-//        if the node contains a goal state then
+            //Verificamos se o estado contido no nó é o estado objectivo, se for, devolvemos a solução
             if(problem.isGoal(node.getState())){
-                //  return the corresponding solution
+
                 return new Solution(problem, node);
             }
-//        add the node to the explored set
+            //adicionamos o nó (que foi feito poll() à lista de nos explorados
             explored.add(node.getState());
-//        expand the node, adding the resulting nodes to the frontier only if
-//        not in the frontier or explored set
+
+            //expande o nó executando tds as acçoes para tdas as possibilidades desse estado (executeActions)
+            // essas acçoes dao origem a estados sucessores que ficam numa lista successors
+
             List<State> successors = problem.executeActions(node.getState());
+
+            //adiciona os nos a fronteira - este metodo é diferente consoante o searchMethod
             addSuccessorsToFrontier(successors, node);
 
             computeStatistics(successors.size());
 
         }
 
-//        return failure
+        //return failure
         return null;
     }
 

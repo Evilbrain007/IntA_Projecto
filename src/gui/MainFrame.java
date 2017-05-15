@@ -132,7 +132,7 @@ public class MainFrame extends JFrame {
         try {
             if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
                 puzzleTableModel.setPuzzle(agent.readInitialStateFromFile(fc.getSelectedFile()));
-                //Será qie há outra maneira de fazer isto?
+                //Será que há outra maneira de fazer isto?
                 tablePuzzle.setDefaultRenderer(Object.class, new PuzzleTileCellRenderer((agent.getEnvironment().getBoxPositions())));
                 buttonSolve.setEnabled(true);
                 buttonShowSolution.setEnabled(false);

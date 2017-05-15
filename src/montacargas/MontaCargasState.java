@@ -129,10 +129,15 @@ public class MontaCargasState extends State implements Cloneable {
         action.execute(this);
         firedPuzzleChanged(null);
     }
-
+/*
     @Override
     public int hashCode() {
         return gridObjects.hashCode();
+    }*/
+
+    @Override
+    public int hashCode() {
+        return 97*7 + Arrays.deepHashCode(this.matrix);
     }
 
     @Override
@@ -360,9 +365,11 @@ public class MontaCargasState extends State implements Cloneable {
     }
 
 
-    public double computeBoxesInTheWay(){
+    ///////////////////////******HEURISTICAS*****////////////////////////////////////////////
 
-        double numboxes = 0;
+    public int computeBoxesInTheWay(){
+
+        int numboxes = 0;
 
         for (GridObject object : gridObjects) {
 
@@ -374,5 +381,34 @@ public class MontaCargasState extends State implements Cloneable {
         }
 
         return numboxes;
+    }
+
+    public int computeDistanceFromDoor(){
+
+        int distance = this.matrix.length - montaCargasColumn;
+
+        return distance;
+    }
+
+    public int computeDistancePlusNumOfBoxes(){
+
+        int criteria = 0;
+
+        criteria = computeBoxesInTheWay() + computeDistanceFromDoor();
+
+        return criteria;
+    }
+
+    public int computeColumnValueSum(){
+
+        int sum = 0;
+
+        for (GridObject object : gridObjects) {
+            if(object.getObjectValue()!=1){
+                sum += object.getPosition().getY();
+            }
+        }
+
+        return sum;
     }
 }

@@ -17,10 +17,11 @@ public class MontaCargasAgent extends Agent<MontaCargasState>{
         super(environment);
         //o metodo clone devolve sempre Object por isso faço cast para MontaCargasState
         initialEnvironment = (MontaCargasState) environment.clone();
-
         //Inserir heuristicas
-        initialEnvironment = (MontaCargasState) environment.clone();
         heuristics.add(new HeuristicBoxesInTheWay());
+        heuristics.add(new HeuristicDistanceFromDoor());
+        heuristics.add(new HeuristicDistancePlusNumOfBoxes());
+        heuristics.add(new HeuristicBetterToTheLeft());
         heuristic = heuristics.get(0);
 
     }

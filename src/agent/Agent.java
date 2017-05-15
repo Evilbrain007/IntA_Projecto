@@ -27,13 +27,16 @@ public class Agent<E extends State> {
         searchMethod = searchMethods.get(0);
         heuristics = new ArrayList<>();
     }
-
+    //Inicia a resolucao do problema que lhe foi passado. Se houver uma heuristica seleccionada faz set a ela
+    //para ser usada na resolucao do problema
     public Solution solveProblem(Problem problem) {
         if (heuristic != null) {
-            problem.setHeuristic(heuristic);
-            heuristic.setProblem(problem);
+            problem.setHeuristic(heuristic); //set a heuristica no problem
+            heuristic.setProblem(problem); //set ao problem na heuristica
         }
-        solution = searchMethod.search(problem);
+        solution = searchMethod.search(problem); //com base no metodo de busca seleccionado, chama o metodo search
+        // para procurar a solucao. o search devolve uma solucao para o problema dado
+        //por fim, o metodo solve devolve a solucao
         return solution;
     }
 
