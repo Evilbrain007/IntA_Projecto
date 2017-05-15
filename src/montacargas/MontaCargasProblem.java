@@ -43,6 +43,7 @@ public class MontaCargasProblem extends Problem<MontaCargasState> {
                 //depois verifica se a accao é valida para esse objecto chamando o isvalid da acçao,
                 //k chama o isvalid do estado e, no estado, sabendo que o current object é i
                 //veriica se é valido para esse objecto
+
                 if(action.isValid(state)){
                     //se accao for valida, faz um clone do Estado
                     //e executa a acçao sobre esse objecto corrente

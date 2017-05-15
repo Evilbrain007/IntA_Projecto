@@ -132,8 +132,7 @@ public class MontaCargasState extends State implements Cloneable {
 
     @Override
     public int hashCode() {
-        //nao sei se é bem assim
-        return 97 * 7 + Arrays.deepHashCode(this.matrix);
+        return gridObjects.hashCode();
     }
 
     @Override
@@ -150,9 +149,6 @@ public class MontaCargasState extends State implements Cloneable {
 
         return Arrays.deepEquals(this.matrix, state.matrix);
 
-    }
-    public int[][] getM(){
-        return matrix;
     }
 
     @Override
@@ -361,5 +357,22 @@ public class MontaCargasState extends State implements Cloneable {
 
     public int getCurrentObject() {
         return currentObject;
+    }
+
+
+    public double computeBoxesInTheWay(){
+
+        double numboxes = 0;
+
+        for (GridObject object : gridObjects) {
+
+            //se a linha for a linha do forklift
+            if((object.getPosition().getX() == montaCargasRow)
+                    && (object.getPosition().getY()> montaCargasColumn)) {
+                numboxes++;
+            }
+        }
+
+        return numboxes;
     }
 }

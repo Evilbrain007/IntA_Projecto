@@ -30,9 +30,8 @@ public class Agent<E extends State> {
 
     public Solution solveProblem(Problem problem) {
         if (heuristic != null) {
-            //TODO
-            /*problem.setHeuristic(heuristic);
-            heuristic.setProblem(problem);*/
+            problem.setHeuristic(heuristic);
+            heuristic.setProblem(problem);
         }
         solution = searchMethod.search(problem);
         return solution;

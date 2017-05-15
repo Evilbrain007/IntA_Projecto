@@ -1,6 +1,6 @@
 package agent;
 
-
+//o generico significa que quando houver um P é algo que extende de problem e para o S a mm coisa
 public abstract class Heuristic <P extends Problem, S extends State>{
     
     protected P problem;

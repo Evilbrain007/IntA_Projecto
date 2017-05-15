@@ -17,7 +17,7 @@ public class DepthLimitedSearch extends DepthFirstSearch {
 
     @Override
     public void addSuccessorsToFrontier(List<State> successors, Node parent) {
-        if(parent.getDepth() < limit){
+            if(parent.getDepth() < limit){
             super.addSuccessorsToFrontier(successors, parent);
         }
     }
