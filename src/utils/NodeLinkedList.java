@@ -85,13 +85,6 @@ public class NodeLinkedList extends LinkedList<Node> implements NodeCollection {
     }
 
     @Override
-    public Node poll() {
-        Node no = super.poll();
-        contents.remove(no.getState());
-        return no;
-    }
-
-    @Override
     public int size() {
         return super.size();
     }
