@@ -178,9 +178,9 @@ public class MainFrame extends JFrame {
                     prepareSearchAlgorithm();
                     MontaCargasProblem problem = new MontaCargasProblem((MontaCargasState)agent.getEnvironment().clone());
 
-                    //TimeThread timeThread = new TimeThread(MainFrame.this);
+                    TimeThread timeThread = new TimeThread(MainFrame.this);
                     agent.solveProblem(problem);
-                    //timeThread.setDone(true);
+                    timeThread.setDone(true);
                 } catch (Exception e) {
                     e.printStackTrace(System.err);
                 }
