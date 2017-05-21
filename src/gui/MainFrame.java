@@ -180,7 +180,7 @@ public class MainFrame extends JFrame {
 
                     TimeThread timeThread = new TimeThread(MainFrame.this);
                     agent.solveProblem(problem);
-                    timeThread.setDone(true);
+                    timeThread.setDone();
                 } catch (Exception e) {
                     e.printStackTrace(System.err);
                 }

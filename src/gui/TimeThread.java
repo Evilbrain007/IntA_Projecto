@@ -10,6 +10,7 @@ public class TimeThread implements Runnable {
     private Thread t;
     private boolean done = false;
     private MainFrame mainFrame;
+    private Duration duration;
 
     TimeThread(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
@@ -23,7 +24,7 @@ public class TimeThread implements Runnable {
 
         while (!done) {
 
-            Duration duration = Duration.between(beginning.toInstant(), Calendar.getInstance().toInstant());
+            duration = Duration.between(beginning.toInstant(), Calendar.getInstance().toInstant());
             mainFrame.setTime("Time Computing: "
                     + duration.getSeconds() / 60 / 60 + ":"
                     + duration.getSeconds() / 60 + ":"
@@ -38,7 +39,12 @@ public class TimeThread implements Runnable {
         }
     }
 
-    public void setDone(boolean done) {
-        this.done = done;
+    public void setDone() {
+        this.done = true;
+        mainFrame.setTime("Time Computing: "
+                + duration.getSeconds() / 60 / 60 + ":"
+                + duration.getSeconds() / 60 + ":"
+                + duration.getSeconds() + ":"
+                + (duration.getNano() - duration.getSeconds()*10^9) + "\n");
     }
 }
