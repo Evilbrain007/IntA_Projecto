@@ -11,7 +11,14 @@ public class NodeLinkedList extends LinkedList<Node> implements NodeCollection {
 
     public NodeLinkedList() {
         super();
-        contents = new HashMap<State, Node>(128);
+        contents = new HashMap<>(128);
+    }
+
+    @Override
+    public Node poll() {
+        Node node = super.poll();
+        contents.remove(node.getState());
+        return node;
     }
 
     @Override

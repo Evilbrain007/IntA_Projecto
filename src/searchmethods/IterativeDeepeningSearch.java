@@ -42,14 +42,11 @@ public class IterativeDeepeningSearch extends DepthFirstSearch {
         //initialize the frontier using the initial state of problem
         frontier.clear();
         frontier.add(new Node(problem.getInitialState()));
-
 //        while(frontier is not empty), ie, qd ja nao ha mais nos para expandir
         while (!frontier.isEmpty() && !stopped) { //se a flag stopped nao estiver a true
 
             //        remove the first node from the frontier
             Node node = frontier.poll();
-
-
 //        se a profundidade do nó for igual ao limite que estabelecemos.
             if (node.getDepth() == limit && problem.isGoal(node.getState())) {
                 //  return the corresponding solution
@@ -64,7 +61,6 @@ public class IterativeDeepeningSearch extends DepthFirstSearch {
             if (node.getDepth() < limit) {
                 addSuccessorsToFrontier(successors, node);
             }
-
             computeStatistics(successors.size());
         }
         return null;

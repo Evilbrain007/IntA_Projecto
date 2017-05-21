@@ -19,7 +19,7 @@ public abstract class GraphSearch<L extends NodeCollection> implements SearchMet
     public Solution search(Problem problem) {
         statistics.reset();
         stopped = false;
-        return graphSearch(problem); //chama o metodo graphSeardesta classe e devolve a solucao por ele encontrada
+        return graphSearch(problem); //chama o metodo graphSear desta classe e devolve a solucao por ele encontrada
     }
 
     /*
