@@ -3,6 +3,8 @@ package searchmethods;
 import agent.Problem;
 import agent.Solution;
 import agent.State;
+import utils.NodeLinkedList;
+
 import java.util.List;
 
 public class IterativeDeepeningSearch extends DepthFirstSearch {
@@ -25,6 +27,8 @@ public class IterativeDeepeningSearch extends DepthFirstSearch {
         statistics.reset();
         stopped = false;
 
+        frontier = new NodeLinkedList();
+
         Solution solution = null;
 
         limit = 0;
@@ -42,7 +46,7 @@ public class IterativeDeepeningSearch extends DepthFirstSearch {
         //initialize the frontier using the initial state of problem
         frontier.clear();
         frontier.add(new Node(problem.getInitialState()));
-
+        frontier.size();
 //        while(frontier is not empty), ie, qd ja nao ha mais nos para expandir
         while (!frontier.isEmpty() && !stopped) { //se a flag stopped nao estiver a true
 
