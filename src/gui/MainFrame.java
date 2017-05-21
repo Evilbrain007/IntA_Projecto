@@ -177,7 +177,10 @@ public class MainFrame extends JFrame {
                 try {
                     prepareSearchAlgorithm();
                     MontaCargasProblem problem = new MontaCargasProblem((MontaCargasState)agent.getEnvironment().clone());
+
+                    TimeThread timeThread = new TimeThread(MainFrame.this);
                     agent.solveProblem(problem);
+                    timeThread.setDone();
                 } catch (Exception e) {
                     e.printStackTrace(System.err);
                 }
@@ -187,7 +190,8 @@ public class MainFrame extends JFrame {
             @Override
             public void done() {
                 if (!agent.hasBeenStopped()) {
-                    textArea.setText(agent.getSearchReport());
+                    textArea.append(agent.getSearchReport());
+
                     if (agent.hasSolution()) {
                         buttonShowSolution.setEnabled(true);
                         buttonSolve.setEnabled(false);
@@ -198,6 +202,10 @@ public class MainFrame extends JFrame {
         };
 
         worker.execute();
+    }
+
+    public void setTime(String time){
+        textArea.setText(time);
     }
 
     public void buttonStop_ActionPerformed(ActionEvent e) {

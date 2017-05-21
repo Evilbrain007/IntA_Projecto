@@ -11,7 +11,7 @@ public class NodePriorityQueue extends PriorityQueue<Node> implements NodeCollec
 
     public NodePriorityQueue() {
         super();
-        contents = new HashMap<State, Node>(128);
+        contents = new HashMap<>(128);
     }
 
     @Override
