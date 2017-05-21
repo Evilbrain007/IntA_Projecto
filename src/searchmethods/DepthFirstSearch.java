@@ -53,7 +53,7 @@ public class DepthFirstSearch extends GraphSearch<NodeLinkedList> {
         //de fila como no breathFirsSearch
 
         for (State successor : successors) {
-            if (!frontier.containsState(successor)  && !(explored.contains(successor))){
+            if (!frontier.containsState(successor)){
                 Node node = new Node(successor, parent);
 
                 if (!node.isCycle()){
