@@ -27,8 +27,8 @@ public class TimeThread implements Runnable {
             duration = Duration.between(beginning.toInstant(), Calendar.getInstance().toInstant());
             mainFrame.setTime("Time Computing: "
                     + duration.getSeconds() / 60 / 60 + ":"
-                    + duration.getSeconds() / 60 + ":"
-                    + duration.getSeconds() + "\n");
+                    + ((duration.getSeconds() / 60) % 60) + ":"
+                    + (duration.getSeconds() % 60) + "\n");
 
             try {
 
