@@ -43,8 +43,8 @@ public class TimeThread implements Runnable {
         this.done = true;
         mainFrame.setTime("Time Computing: "
                 + duration.getSeconds() / 60 / 60 + ":"
-                + duration.getSeconds() / 60 + ":"
-                + duration.getSeconds() + ":"
-                + (duration.getNano() - duration.getSeconds()*10^9) + "\n");
+                + ((duration.getSeconds() / 60) % 60) + ":"
+                + (duration.getSeconds() % 60) + ":"
+                + (duration.getNano() % 10^9) + "\n");
     }
 }

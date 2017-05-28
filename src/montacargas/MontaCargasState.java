@@ -59,16 +59,16 @@ public class MontaCargasState extends State implements Cloneable {
         int[][] copy = new int[matrix.length][matrix.length];
         this.gridObjects = new ArrayList<>();
 
-
+        //faz uma copia da matriz
         for (int l = 0; l < matrix.length; l++) {
             for (int c = 0; c < matrix.length; c++) {
                 copy[l][c] = matrix[l][c];
             }
         }
-
+        //preencher o array gridObjects com os objectos presentes na matriz
         for (int l = 0; l < matrix.length; l++) {
             for (int c = 0; c < matrix.length; c++) {
-                int cell = copy[l][c];
+                int cell = copy[l][c]; //criamos var cell para apanhar  valor que esta em cd celula da matriz
                 if (cell == 1) {
                     gridObjects.add(new Forklift(l, c));
                 } else if (cell != 0) {
@@ -168,7 +168,7 @@ public class MontaCargasState extends State implements Cloneable {
     }
 
     @Override
-    public Action getAction() {
+    public Action getAction() { //TODO mudar o getAction
         if(this.action instanceof ActionWithObj){
             ActionWithObj actionWithObj = null;
             if (this.action instanceof ActionDown){

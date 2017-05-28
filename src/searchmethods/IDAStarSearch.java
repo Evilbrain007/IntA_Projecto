@@ -16,6 +16,7 @@ public class IDAStarSearch extends InformedSearch {
     @Override
     public Solution search(Problem problem) {
         stopped = false;
+        statistics.reset();
         this.heuristic = problem.getHeuristic();
 
         limit = heuristic.compute(problem.getInitialState());//definimos que o limite é o valor estimado
@@ -75,7 +76,7 @@ public class IDAStarSearch extends InformedSearch {
 
             if (!frontier.containsState(sucsessor) && !(explored.contains(sucsessor))){
 
-                if (f<limit){
+                if (f<=limit){
 
                     if (!node.isCycle()){
                         frontier.add(node);
