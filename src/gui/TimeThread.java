@@ -14,6 +14,10 @@ public class TimeThread implements Runnable {
 
     TimeThread(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
+    }
+
+
+    public void startTime() {
         this.done = false;
         this.t = new Thread(this);
         this.t.start();
@@ -45,6 +49,6 @@ public class TimeThread implements Runnable {
                 + duration.getSeconds() / 60 / 60 + ":"
                 + ((duration.getSeconds() / 60) % 60) + ":"
                 + (duration.getSeconds() % 60) + ":"
-                + (duration.getNano() % 10^9) + "\n");
+                + (duration.getNano()) + "\n");
     }
 }

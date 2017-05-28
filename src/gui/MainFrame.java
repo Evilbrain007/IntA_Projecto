@@ -49,6 +49,8 @@ public class MainFrame extends JFrame {
     private JButton buttonReset = new JButton("Reset to initial state");
     private JTextArea textArea;
 
+    private TimeThread timeThread = new TimeThread(this);
+
     public MainFrame() {
         try {
             jbInit();
@@ -178,7 +180,7 @@ public class MainFrame extends JFrame {
                     prepareSearchAlgorithm();
                     MontaCargasProblem problem = new MontaCargasProblem((MontaCargasState)agent.getEnvironment().clone());
 
-                    TimeThread timeThread = new TimeThread(MainFrame.this);
+                    MainFrame.this.timeThread.startTime();
                     agent.solveProblem(problem);
                     timeThread.setDone();
                 } catch (Exception e) {
