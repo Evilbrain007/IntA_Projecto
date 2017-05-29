@@ -396,11 +396,11 @@ public class MontaCargasState extends State implements Cloneable {
         return distance;
     }
 
-    public int computeDistancePlusNumOfBoxes(){
+    public double computeDistancePlusNumOfBoxes(){
 
-        int criteria = 0;
+        double criteria = 0;
 
-        criteria = computeBoxesInTheWay() + computeDistanceFromDoor();
+        criteria = 0.5*computeBoxesInTheWay() + 0.5*computeDistanceFromDoor();
 
         return criteria;
     }
