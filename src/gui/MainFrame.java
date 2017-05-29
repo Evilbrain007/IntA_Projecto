@@ -212,6 +212,7 @@ public class MainFrame extends JFrame {
 
     public void buttonStop_ActionPerformed(ActionEvent e) {
         agent.stop();
+        this.timeThread.setDone();
         buttonShowSolution.setEnabled(false);
         buttonStop.setEnabled(false);
         buttonSolve.setEnabled(true);
