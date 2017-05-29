@@ -98,7 +98,7 @@ public class MainFrame extends JFrame {
 
         JPanel puzzlePanel = new JPanel(new FlowLayout());
         puzzlePanel.add(tablePuzzle);
-        textArea = new JTextArea(15, 31);
+        textArea = new JTextArea(16, 40);
         JScrollPane scrollPane = new JScrollPane(textArea);
         textArea.setEditable(false);
         puzzlePanel.add(scrollPane);
@@ -112,6 +112,7 @@ public class MainFrame extends JFrame {
         configureTable();
 
         pack();
+        
     }
 
     private void configureTable() {

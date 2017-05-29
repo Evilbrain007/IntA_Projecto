@@ -7,7 +7,7 @@ import java.util.Calendar;
  * Created by Migue on 15/05/2017.
  */
 public class TimeThread implements Runnable {
-    private Thread t;
+    private volatile Thread t;
     private boolean done = false;
     private MainFrame mainFrame;
     private Duration duration;
@@ -26,7 +26,7 @@ public class TimeThread implements Runnable {
     public void run() {
         Calendar beginning = Calendar.getInstance();
 
-        while (!done) {
+        while (!done && Thread.currentThread()==this.t) {
 
             duration = Duration.between(beginning.toInstant(), Calendar.getInstance().toInstant());
             mainFrame.setTime("Time Computing: "
@@ -45,10 +45,13 @@ public class TimeThread implements Runnable {
 
     public void setDone() {
         this.done = true;
-        mainFrame.setTime("Time Computing: "
-                + duration.getSeconds() / 60 / 60 + ":"
-                + ((duration.getSeconds() / 60) % 60) + ":"
-                + (duration.getSeconds() % 60) + ":"
-                + (duration.getNano()) + "\n");
+
+        if(this.t != null) {
+            mainFrame.setTime("Time Computing: "
+                    + duration.getSeconds() / 60 / 60 + ":"
+                    + ((duration.getSeconds() / 60) % 60) + ":"
+                    + (duration.getSeconds() % 60) + ":"
+                    + (duration.getNano()) + "\n");
+        }
     }
 }
