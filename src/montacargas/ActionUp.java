@@ -20,4 +20,9 @@ public class ActionUp extends ActionWithObj{
 
         return state.canMoveCurrentObjUp();
     }
+
+    @Override
+    public Object clone() {
+        return new ActionUp();
+    }
 }

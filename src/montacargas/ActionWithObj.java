@@ -22,4 +22,7 @@ public abstract class ActionWithObj extends Action<MontaCargasState> {
     public void setObjIndex(int objIndex) {
         this.objIndex = objIndex;
     }
+
+    @Override
+    public abstract Object clone();
 }

@@ -21,4 +21,9 @@ public class ActionDown extends ActionWithObj{
         return state.canMoveCurrentObjDown();
 
     }
+
+    @Override
+    public Object clone() {
+        return new ActionDown();
+    }
 }

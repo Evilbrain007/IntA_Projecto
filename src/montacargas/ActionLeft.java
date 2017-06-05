@@ -20,4 +20,9 @@ public class ActionLeft extends ActionWithObj{
 
         return state.canMoveCurrentObjLeft();
     }
+
+    @Override
+    public Object clone() {
+        return new ActionLeft();
+    }
 }

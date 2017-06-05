@@ -21,4 +21,9 @@ public class ActionRight extends ActionWithObj{
         return state.canMoveCurrentObjRight();
 
     }
+
+    @Override
+    public Object clone() {
+        return new ActionRight();
+    }
 }
