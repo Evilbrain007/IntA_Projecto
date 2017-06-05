@@ -168,7 +168,7 @@ public class MontaCargasState extends State implements Cloneable {
     }
 
     @Override
-    public Action getAction() { //TODO mudar o getAction
+    public Action getAction() {
         if(this.action instanceof ActionWithObj){
             ActionWithObj actionWithObj = (ActionWithObj)((ActionWithObj) this.action).clone();
             actionWithObj.setObjIndex(this.currentObject);
